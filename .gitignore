@@ -1,0 +1,20 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# 릴리즈 서명 키 — 분실하면 같은 패키지로 업데이트를 못 올린다. 커밋 금지, 백업은 별도로.
+keystore.properties
+*.jks
+*.keystore

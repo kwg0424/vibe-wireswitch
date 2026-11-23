@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  WireSwitch 로고 — 토글 스위치(= switch) 트랙 안에 3x3 도트 격자.
+  노브가 오른쪽에 있어 "켜짐"으로 읽히고, 도트는 노브에서 멀수록 흐려져 터널이 열리는 느낌을 준다.
+
+  어댑티브 아이콘 안전 영역(중앙 지름 66)을 벗어나지 않도록 트랙은 x 26~82, y 41~67 안에 둔다.
+  색이 무시되는 테마 아이콘은 ic_launcher_mono.xml 로 따로 둔다.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 그림자 -->
+    <path
+        android:fillColor="#33000000"
+        android:pathData="M39,45 H69 A13,13 0 0 1 69,71 H39 A13,13 0 0 1 39,45 Z" />
+
+    <!-- 트랙 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M39,41 H69 A13,13 0 0 1 69,67 H39 A13,13 0 0 1 39,41 Z" />
+
+    <!-- 도트 격자 — 노브에서 가까운 열(오른쪽)이 진하고 왼쪽으로 갈수록 흐리다 -->
+    <path
+        android:fillColor="#66881A1E"
+        android:pathData="M34,48 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M34,54 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M34,60 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z" />
+    <path
+        android:fillColor="#B3881A1E"
+        android:pathData="M42,48 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M42,54 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M42,60 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z" />
+    <path
+        android:fillColor="#FF881A1E"
+        android:pathData="M50,48 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M50,54 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z
+                          M50,60 m-1.8,0 a1.8,1.8 0 1 0 3.6,0 a1.8,1.8 0 1 0 -3.6,0 Z" />
+
+    <!-- 노브 -->
+    <path
+        android:fillColor="#FF7A1218"
+        android:pathData="M69,45 a9,9 0 1 0 0,18 a9,9 0 1 0 0,-18 Z" />
+</vector>

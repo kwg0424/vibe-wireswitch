@@ -1,0 +1,2 @@
+# WireGuard 터널 라이브러리 — 네이티브(JNI) 코드가 이름으로 자바 메서드를 호출하므로 R8 이 건드리지 않게 한다.
+-keep class com.wireguard.** { *; }

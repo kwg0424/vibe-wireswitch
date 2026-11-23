@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 실제 색은 Compose 쪽 WireSwitchTheme(ui/Theme.kt)이 입힌다 — 여기선 Compose가 그려지기 전
+         흰 화면이 번쩍이지 않도록 배경색만 미리 맞춰둔다. -->
+    <style name="Theme.WireSwitch" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/app_bg</item>
+        <item name="android:statusBarColor">@color/app_bg</item>
+        <item name="android:navigationBarColor">@color/app_bg</item>
+    </style>
+</resources>
