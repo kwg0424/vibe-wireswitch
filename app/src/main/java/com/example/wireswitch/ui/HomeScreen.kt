@@ -354,7 +354,9 @@ private fun ConfigDetailDialog(
                         color = Amber,
                     )
                 }
-                // 구성 이름 입력과 오른쪽 끝의 `저장`. 바꾼 이름이 유효할 때만 저장할 수 있고, 저장 후에도 팝업은 열려 있다.
+                // 라벨은 "설정 파일" 처럼 입력칸 위에 따로 둔다 — 입력칸 테두리와 `저장` 버튼의 높이/위치를 일치시키기 위함.
+                // 바꾼 이름이 유효할 때만 저장할 수 있고, 저장 후에도 팝업은 열려 있다.
+                Text("구성 이름", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
@@ -363,7 +365,6 @@ private fun ConfigDetailDialog(
                     OutlinedTextField(
                         value = nameDraft,
                         onValueChange = { nameDraft = it },
-                        label = { Text("구성 이름") },
                         singleLine = true,
                         isError = nameTaken,
                         // 이름이 겹칠 때만 안내한다.

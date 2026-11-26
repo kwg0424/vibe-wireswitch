@@ -16,23 +16,23 @@ object VpnController {
     private val EVENT_TIME_FORMAT = DateTimeFormatter.ofPattern("M/d HH:mm")
 
     /**
-     * 알람이 울렸을 때. [at] 시각의 상태를 일정 구성 전부에 무조건 맞춘다(같은 상태여도 — 사용자가
-     * 수동으로 바꿨을 수 있으므로 경계 시각엔 다시 맞춘다).
+     * 알람이 울렸을 때(일정 시작/종료 경계 시각). [at] 시각의 상태를 일정 구성 전부에 맞춘다.
+     * 일정에 따른 켜기/끄기는 오직 이 시각에만 일어난다.
      */
     fun onAlarm(context: Context, at: ZonedDateTime) {
-        apply(context, at, force = true)
+        apply(context, at)
         VpnAlarmScheduler.scheduleNext(context)
     }
 
     /**
-     * 부팅/앱 업데이트/설정 저장 직후. 지금 실제 상태가 일정이 원하는 상태와 다를 때만 바꾼다.
+     * 부팅/앱 업데이트/설정 저장 직후. 연결 상태는 건드리지 않고 다음 알람만 다시 건다 —
+     * 경계 시각이 아닐 때 수동으로 켠 VPN 이 일정 때문에 꺼지면 안 된다.
      */
     fun sync(context: Context) {
-        apply(context, ZonedDateTime.now(), force = false)
         VpnAlarmScheduler.scheduleNext(context)
     }
 
-    private fun apply(context: Context, at: ZonedDateTime, force: Boolean) {
+    private fun apply(context: Context, at: ZonedDateTime) {
         val store = VpnSettingsStore(context)
         val settings = store.load()
         if (!settings.enabled) {
@@ -47,8 +47,8 @@ object VpnController {
             .sortedBy { (_, up) -> up }
 
         decisions.forEach { (config, desiredUp) ->
-            val actualUp = VpnEngine.activeId == config.id
-            if (force || desiredUp != actualUp) {
+            // 이미 원하는 상태면 다시 보내지 않는다(불필요한 재연결 방지).
+            if (desiredUp != (VpnEngine.activeId == config.id)) {
                 send(context, store, config, desiredUp, "${at.format(EVENT_TIME_FORMAT)} ${upLabel(desiredUp)}")
             }
         }
